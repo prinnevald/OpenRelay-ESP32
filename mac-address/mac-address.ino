@@ -8,7 +8,11 @@
 */
 
 // Include WiFi Library
-#include "WiFi.h"
+#ifdef ESP32
+  #include <WiFi.h>
+#else
+  #include <ESP8266WiFi.h>
+#endif
 
 void setup() {
 
@@ -16,7 +20,7 @@ void setup() {
   Serial.begin(115200);
 
   // Put ESP32 into Station mode
-  WiFi.mode(WIFI_MODE_STA);
+  WiFi.mode(WIFI_AP_STA);
 
   // Print MAC Address to Serial monitor
   Serial.print("MAC Address: ");
